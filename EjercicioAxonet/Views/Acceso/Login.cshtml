@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Log in";
+    Layout = null;
+    var returnUrl = ViewData["returnUrl"] as string;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css" rel="stylesheet" />
+    <link href="~/css/login.css" rel="stylesheet" />
+</head>
+<body >
+    <section style="height:92.1vh">
+        <div class="container-fluid h-custom" style="height:inherit">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-md-9 col-lg-6 col-xl-5">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" class="img-fluid" alt="Sample image">
+                </div>
+                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                    <form action="/Acceso/Login" method="post">
+                        <div class="divider d-flex align-items-center my-4">
+                            <h1 class="text-center fw-bold mx-0 mb-0">Ingresa ahora</h1>
+                        </div>
+
+                        <!-- Correo input -->
+                        <div class="form-outline mb-4">
+                            <input type="email" id="correo"  class="form-control form-control-lg" name="usr" placeholder="Ingrese un correo valido" required>
+                            <label class="form-label" for="correo">Correo</label>
+                        </div>
+
+                        <!-- Contraseña input -->
+                        <div class="form-outline mb-3">
+                            <input type="password" id="contrasenia" class="form-control form-control-lg" name="pwd" placeholder="Contraseña" required>
+                            <label class="form-label" for="contrasenia">Contraseña</label>
+                        </div>
+
+                        <div class="text-center text-lg-start mt-4 pt-2">
+                            <button type="submit" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">
+                                Ingresar
+                            </button>
+                            <p class="small fw-bold mt-2 pt-1 mb-0">¿No tienes cuenta? 
+                                @Html.ActionLink("Registrate", "Registro", "Acceso",null, new{@class="link-danger"})
+                                @*<a href="@Url.Action("RegistroUsuario")" class="link-danger">Registrate</a>*@
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
+            <!-- Copyright -->
+            <div class="text-white mb-3 mb-md-0">
+                Copyright © @DateTime.Now.Year . All rights reserved.
+            </div>
+        </div>
+    </section>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"></script>
+</body>
+</html>

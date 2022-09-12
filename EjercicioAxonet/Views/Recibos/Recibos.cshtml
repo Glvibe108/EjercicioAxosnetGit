@@ -1,0 +1,81 @@
+﻿@model Common.Response<List<EjercicioAxonet.Common.DTOs.ReciboDTO>>
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="d-flex align-items-center mb-2 mt-4">
+            <i class="fas fa-file-signature pr-3" style="font-size: 40px;"></i>
+            <h1>Recibos</h1>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="card card-outline">
+            <div class="card-header">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-file-signature"></i>
+                        <h5 class="tituloContainer pl-3">Gestión de Recibos</h5>
+                    </div>
+                    <button class="btn btn-outline-primary OpenModalReciboClass" data-request-url="@Url.Action("NuevoRecibo", "Recibos")" onclick="OpenModalRecibos()" data-toggle="tooltip" data-placement="bottom" title="Haz click para agregar un recibo"><i class="fas fa-plus-circle pr-2"></i>Nuevo</button>
+                </div>
+            </div>
+            <div class="card-body">
+                <br />
+                <div class="dataTables_wrapper dt-bootstrap4 contentTable">
+                    <table id="tablaRecibo" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th width="3%">#</th>
+                                <th width="18%">FolioRecibo</th>
+                                <th width="18%">MontoRecibo</th>
+                                <th width="18%">Moneda</th>
+                                <th width="18%">Proveedor</th>
+                                <th width="18%">Comentario</th>
+                                <th width="5%">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Code == 0 && Model.Result.Any())
+                            {
+                                foreach (var item in Model.Result)
+                                {
+                                    <tr id="@item.ReciboId">
+                                        <td><i class="fas fa-file-signature"></i></td>
+                                        <td>@item.FolioRecibo</td>
+                                        <td>@item.MontoRecibo</td>
+                                        <td>@item.NombreMoneda</td>
+                                        <td>@item.NombreProveedor</td>
+                                        <td>@item.Comentario</td>
+                                        <td>
+                                            <a href="#" class="OpenModalVerReciboClass" title="Ver" data-request-url="@Url.Action("_modalVerRecibos", "Recibos")" onclick="OpenModalVerRecibo(@item.ReciboId)"><i class="fas fa-eye"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*Modales*@
+<div class="modal fade" id="modalRecibo" tabindex="-1" role="dialog" aria-labelledby="ReciboModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content card-outline">
+            <partial name="_modalRecibo" />
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalVerRecibo" tabindex="-1" role="dialog" aria-labelledby="VerReciboModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content card-outline">
+            <partial name="_modalVerRecibos" />
+        </div>
+    </div>
+</div>
+<script>
+    var urlRec = '@Url.Action("_modalVerRecibos","Recibos")';
+    var urlMonRec = '@Url.Action("ListadoMonedas","Recibos")';
+    var urlProvRec = '@Url.Action("ListadoProveedores","Recibos")';
+</script>

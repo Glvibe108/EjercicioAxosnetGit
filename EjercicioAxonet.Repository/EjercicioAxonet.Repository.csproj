@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain.Common\Domain.Common.csproj" />
+    <ProjectReference Include="..\EjercicioAxonet.DataBase\EjercicioAxonet.DataBase.csproj" />
+    <ProjectReference Include="..\EjercicioAxonet.Domain\EjercicioAxonet.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

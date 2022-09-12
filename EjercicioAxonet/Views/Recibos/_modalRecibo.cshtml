@@ -1,0 +1,34 @@
+﻿<form id="formRecibo" name="formRecibo">
+    <div class="modal-header">
+        <h5 class="modal-title" id="ReciboModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group row">
+            <label for="fechaRecibo" class="col-md-3 col-form-label"><span style="color:red">*</span>Fecha del recibo:</label>
+            <div class="col-md-3" style="padding-left:0;">
+                <input type="date" class="form-control" name="fechaRecibo" id="fechaRecibo" value="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="monto"><span style="color:red">*</span>Monto:</label>
+            <input type="text" class="form-control" id="monto" name="monto" placeholder="0.00" required>
+        </div>
+        <div class="form-group row px-3">
+            <label for="monedaRecibo" class="col-form-label"><span style="color:red">*</span>Moneda:</label>
+            <select class="form-control" id="monedaRecibo" value="" name="monedaRecibo"></select>
+        </div>
+        <div class="form-group row px-3">
+            <label for="proveedorRecibo" class="col-form-label"><span style="color:red">*</span>Proveedor:</label>
+            <select class="form-control" id="proveedorRecibo" value="" name="proveedorRecibo"></select>
+        </div>
+        <div class="form-group">
+            <label for="comentario">Comentario:</label>
+            <textarea class="form-control" id="comentario" rows="3"></textarea>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" id="guardarRecibo" onclick="GuardarRecibo()">Guardar</button>
+    </div>
+</form>

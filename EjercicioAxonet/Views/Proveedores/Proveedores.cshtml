@@ -1,0 +1,72 @@
+﻿@model Common.Response<List<EjercicioAxonet.Common.DTOs.ProveedorDTO>>
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="d-flex align-items-center mb-2 mt-4">
+            <i class="fas fa-users pr-3" style="font-size: 40px;"></i>
+            <h1>Proveedores</h1>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="card card-outline">
+            <div class="card-header">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-file-signature"></i>
+                        <h5 class="tituloContainer pl-3">Gestión de Proveedores</h5>
+                    </div>
+                    <button class="btn btn-outline-primary OpenModalProveedorClass" data-request-url="@Url.Action("DatosProveedor", "Proveedores")" onclick="OpenModalProveedor(true, null)" data-toggle="tooltip" data-placement="bottom" title="Haz click para agregar un Proveedor"><i class="fas fa-plus-circle pr-2"></i>Nuevo</button>
+                </div>
+            </div>
+            <div class="card-body">
+                <br />
+                <div class="dataTables_wrapper dt-bootstrap4 contentTable">
+                    <table id="tablaProveedor" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th width="3%">#</th>
+                                <th width="15%">Nombre</th>
+                                <th width="15%">Correo</th>
+                                <th width="15%">Teléfono</th>
+                                <th width="47%">Direcciones</th>
+                                <th width="5%">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Code == 0 && Model.Result.Any())
+                            {
+                                foreach (var item in Model.Result)
+                                {
+                                    <tr id="@item.ProveedorId">
+                                        <td><i class="fas fa-users"></i></td>
+                                        <td>@item.NombreCortoProveedor</td>
+                                        <td>@item.CorreoProveedor</td>
+                                        <td>@item.TelefonoProveedor</td>
+                                        <td>@item.DireccionProveedor</td>
+                                        <td>
+                                            <a href="#" class="OpenModalProveedorClass" title="Editar" data-request-url="@Url.Action("DatosProveedor", "Proveedores")" onclick="OpenModalProveedor(false, @item.ProveedorId)"><i class="far fa-edit"></i></a>
+                                            &nbsp
+                                            <a href="#" class="EliminarProveedorClass" title="Eliminar" data-request-url="@Url.Action("EliminarProveedor", "Proveedores")" onclick="EliminarProveedor(@item.ProveedorId)"><i class="far fa-trash-alt"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*Modales*@
+<div class="modal fade" id="modalProveedor" tabindex="-1" role="dialog" aria-labelledby="ProveedorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content card-outline">
+            <partial name="_modalProveedor" />
+        </div>
+    </div>
+</div>
+<script>
+    var urlProv = '@Url.Action("DatosProveedor","Proveedores")';
+    var urlDelProv = '@Url.Action("EliminarProveedor", "Proveedores")';
+</script>

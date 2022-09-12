@@ -1,0 +1,68 @@
+﻿@model Common.Response<List<EjercicioAxonet.Common.DTOs.MonedaDTO>>
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="d-flex align-items-center mb-2 mt-4">
+            <i class="fas fa-coins pr-3" style="font-size: 40px;"></i>
+            <h1>Monedas</h1>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="card card-outline">
+            <div class="card-header">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-file-signature"></i>
+                        <h5 class="tituloContainer pl-3">Gestión de Monedas</h5>
+                    </div>
+                    <button class="btn btn-outline-primary OpenModalMonedaClass" data-request-url="@Url.Action("DatosMoneda", "Monedas")" onclick="OpenModalMoneda(true, null)" data-toggle="tooltip" data-placement="bottom" title="Haz click para agregar una Moneda"><i class="fas fa-plus-circle pr-2"></i>Nuevo</button>
+                </div>
+            </div>
+            <div class="card-body">
+                <br />
+                <div class="dataTables_wrapper dt-bootstrap4 contentTable">
+                    <table id="tablaMoneda" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th width="3%">#</th>
+                                <th width="46%">Moneda</th>
+                                <th width="46%">Abreviatura</th>
+                                <th width="5%">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Code == 0 && Model.Result.Any())
+                            {
+                                foreach (var item in Model.Result)
+                                {
+                                    <tr id="@item.MonedaId">
+                                        <td><i class="fas fa-coins"></i></td>
+                                        <td>@item.Moneda</td>
+                                        <td>@item.MonedaAbreviatura</td>
+                                        <td>
+                                            <a href="#" class="OpenModalMonedaClass" title="Editar" data-request-url="@Url.Action("DatosMoneda", "Monedas")" onclick="OpenModalMoneda(false, @item.MonedaId)"><i class="far fa-edit"></i></a>
+                                            &nbsp
+                                            <a href="#" class="EliminarMonedaClass" title="Eliminar" data-request-url="@Url.Action("EliminarMoneda", "Monedas")" onclick="EliminarMoneda(@item.MonedaId)"><i class="far fa-trash-alt"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*Modales*@
+<div class="modal fade" id="modalMoneda" tabindex="-1" role="dialog" aria-labelledby="MonedaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content card-outline">
+            <partial name="_modalMoneda" />
+        </div>
+    </div>
+</div>
+<script>
+    var urlMon = '@Url.Action("DatosMoneda","Monedas")';
+    var urlDelMon = '@Url.Action("EliminarMoneda", "Monedas")';
+</script>

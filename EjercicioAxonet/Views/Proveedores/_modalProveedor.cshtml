@@ -1,0 +1,35 @@
+﻿<form id="formProveedor" name="formProveedor">
+    <div class="modal-header">
+        <h5 class="modal-title" id="ProveedorModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body">
+        <input type="hidden" name="idProveedor" id="idProveedor" value=""/>
+        <input type="hidden" value="" class="nuevoElemento" data-request-url="@Url.Action("NuevoProveedor", "Proveedores")"/>
+        <input type="hidden" value="" class="editarElemento" data-request-url="@Url.Action("EditarProveedor", "Proveedores")" />
+        <div class="form-group">
+            <label for="nombreCorto"><span style="color:red">*</span>Nombre corto:</label>
+            <input type="text" class="form-control" id="nombreCorto" name="nombreCorto" placeholder="Ingrese el nombre corto del proveedor" required>
+        </div>
+        <div class="form-group">
+            <label for="nombreLargo"><span style="color:red">*</span>Nombre completo:</label>
+            <input type="text" class="form-control" id="nombreLargo" name="nombreLargo" placeholder="Ingrese el nombre completo del proveedor" required>
+        </div>
+        <div class="form-group">
+            <label for="correo">Correo:</label>
+            <input type="email" class="form-control" id="correo" name="correo" placeholder="Ingrese el correo del proveedor">
+        </div>
+        <div class="form-group">
+            <label for="telefono">Teléfono:</label>
+            <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Ingrese el teléfono del proveedor">
+        </div>
+        <div class="form-group">
+            <label for="direccíon">Dirección:</label>
+            <textarea class="form-control" id="direccion" rows="3"></textarea>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" >Cerrar</button>
+        <button type="button" class="btn btn-primary" id="guardarProveedor" onclick="GuardarProveedor()">Guardar</button>
+    </div>
+</form>
